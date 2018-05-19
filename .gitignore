@@ -1,0 +1,5 @@
+# Exclude the stellar/quickstart data folder
+opt-stellar/*
+
+# But keep the folder itself
+!opt-stellar/.gitkeep

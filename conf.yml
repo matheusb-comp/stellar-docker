@@ -1,0 +1,26 @@
+version: '3.3'
+
+secrets:
+ dbpass:
+   file: ./dbpass.env
+
+services:
+  stellar:
+    image: stellar/quickstart:latest
+    secrets:
+      - dbpass
+    entrypoint: ["/opt/stellar-default/start.sh", "dbpass", "--pubnet"]
+    volumes:
+      - ./stellar-conf:/opt/stellar-default
+      # Ephemeral mode: Remove this line
+      - ./opt-stellar:/opt/stellar
+    ports:
+      - "8000:8000"
+      - "5000:5432"
+      # TODO: Remove this, the stellar-core HTTP port shouldn't be accessible
+      - "11626:11626"
+      # TODO: Remove this, http port used by 'getvoters'
+      - "8080:8080"
+    deploy:
+      placement:
+        constraints: [node.role == manager]
