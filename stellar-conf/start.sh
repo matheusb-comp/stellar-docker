@@ -7,12 +7,16 @@ if [ -n $1 ]; then
   set -o allexport
   source /run/secrets/$1
   set +o allexport
-  # Throw away the secret name, but keep all the orther arguments
+  # Throw away the secret name, but keep all the other arguments
   shift
 fi
 
 # TODO: Remove this and run the code on a proper docker image in the stack
-/opt/stellar-default/getvoters &
+if [ ! -f getvoters ]; then
+  wget https://github.com/matheusb-comp/go/releases/download/v0.1/getvoters
+  chmod +x getvoters
+fi
+./getvoters -pass $POSTGRES_PASSWORD &
 
 # Start the stellar/quickstart image as usual (entrypoint)
 /init -- /start $@
