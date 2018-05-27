@@ -12,7 +12,6 @@ services:
     entrypoint: ["/opt/stellar-default/start.sh", "dbpass", "--pubnet"]
     volumes:
       - ./stellar-conf:/opt/stellar-default
-      # Ephemeral mode: Remove this line
       - ./opt-stellar:/opt/stellar
     ports:
       - "8000:8000"

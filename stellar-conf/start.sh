@@ -12,11 +12,12 @@ if [ -n $1 ]; then
 fi
 
 # TODO: Remove this and run the code on a proper docker image in the stack
-if [ ! -f getvoters ]; then
+if [ ! -f /opt/stellar/getvoters ]; then
   wget https://github.com/matheusb-comp/go/releases/download/v0.1/getvoters
   chmod +x getvoters
+  mv getvoters /opt/stellar/getvoters
 fi
-./getvoters -pass $POSTGRES_PASSWORD &
+/opt/stellar/getvoters -pass $POSTGRES_PASSWORD &
 
 # Start the stellar/quickstart image as usual (entrypoint)
 /init -- /start $@
