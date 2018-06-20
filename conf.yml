@@ -9,10 +9,13 @@ services:
     image: stellar/quickstart:latest
     secrets:
       - dbpass
-    entrypoint: ["/opt/stellar-default/start.sh", "dbpass", "--pubnet"]
+    entrypoint: ["/opt/scripts/start.sh", "dbpass", "--pubnet"]
     volumes:
-      - ./stellar-conf:/opt/stellar-default
+      - ./scripts:/opt/scripts
+      # Folder where the data is kept in Persistent Mode
       - ./opt-stellar:/opt/stellar
+      # Default configs from submodule stellar/docker-stellar-core-horizon
+      - ./lib/stellar-quickstart:/opt/stellar-default
     ports:
       - "8000:8000"
       - "5000:5432"

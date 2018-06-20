@@ -12,9 +12,13 @@ on the URLs `/totals` (total number of voters and votes) and `/voters` (the list
 
 ## Instructions ##
 
-As long as you have the latest version of docker, just clone the repository and run:
+As long as you have the latest version of docker, run:
 
 ```
+git clone https://github.com/matheusb-comp/stellar-docker.git
+cd stellar-docker
+git submodule init
+git submodule update
 sudo docker swarm init
 sudo docker stack deploy -c conf.yml stellar
 ```

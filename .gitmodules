@@ -1,0 +1,3 @@
+[submodule "lib/stellar-quickstart"]
+	path = lib/stellar-quickstart
+	url = https://github.com/stellar/docker-stellar-core-horizon.git
