@@ -26,3 +26,23 @@ services:
     deploy:
       placement:
         constraints: [node.role == manager]
+
+  watcher:
+    image: matheusbcomp/watcher:latest
+    secrets:
+      - dbpass
+    environment:
+      - POSTGRES_HOST=stellar
+      - POSTGRES_PORT=5432
+      - POSTGRES_DB=core
+      - POSTGRES_USER=stellar
+      - HORIZON_URL=http://stellar:8000
+    entrypoint: ["/root/scripts/watcherStart.sh", "dbpass"]
+    volumes:
+      - ./scripts:/root/scripts
+      # Map the same folder to keep both the success and error results
+      - ./watcher:/root/success
+      - ./watcher:/root/error
+    deploy:
+      placement:
+        constraints: [node.role == manager]

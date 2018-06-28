@@ -38,7 +38,7 @@ sudo docker stack deploy -c conf.yml stellar
 
 | Port  | Service      | Description          |
 |-------|--------------|----------------------|
-| 5432  | postgresql   | database access port |
+| 5000  | postgresql   | database access port |
 | 11626 | stellar-core | main http port       |
 | 8000  | horizon      | main http port       |
 | 8080  | getvoters    | voters information   |
